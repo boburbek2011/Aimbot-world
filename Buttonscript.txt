@@ -1,0 +1,28 @@
+-- Partga joylashtirilgan skript (ButtonScript)
+
+local part = script.Parent
+local aimbotScriptModule = require(game:GetService("ServerScriptService"):WaitForChild("AimbotScript"))
+
+local aimbotEnvironment = nil
+
+part.ClickDetector.MouseClick:Connect(function(player)
+    if aimbotEnvironment == nil then
+        aimbotEnvironment = aimbotScriptModule()
+    else
+        if aimbotEnvironment.Settings.Enabled then
+            aimbotEnvironment.Settings.Enabled = false
+            print("Aimbot o'chirildi")
+        else
+            aimbotEnvironment.Settings.Enabled = true
+            print("Aimbot yoqildi")
+        end
+    end
+
+    -- Agar kerak bo'lsa, qismning ko'rinishini o'zgartiring (misol uchun, yashil/qizil)
+end)
+
+-- Agar qismga ClickDetector yo'q bo'lsa, yarating
+if not part:FindFirstChild("ClickDetector") then
+    local clickDetector = Instance.new("ClickDetector")
+    clickDetector.Parent = part
+end
