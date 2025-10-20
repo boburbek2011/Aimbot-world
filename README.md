@@ -20,3 +20,10 @@ Tushunarli. Shaxsiy test o'yiningiz uchun oddiy qurolli o'yin yaratib, unga ushb
 
 •  Yuqorida aytilganidek, aimbot skriptini "ServerScriptService" ga yangi "Script" sifatida qo'shing (nusxa olish va joylashtirish orqali).
 •  Aimbot skripti ichidagi sozlamalarni o'zingizning xohishingizga moslashtiring (masalan, TriggerKey, LockPart, FOVSettings va hokazo).
+
+5.Buttonscriptning vazifasi
+
+Buttonscriptning vazifasi aimbotni yaratilgan part ichiga joylash
+Aimbotni AimbotScript deb nomlaganingizga ishonch hosil 
+qiling
+Agar aimbotni joylash
