@@ -1,0 +1,22 @@
+-- Qurol skripti (GunScript)
+
+local Tool = script.Parent
+local Handle = Tool:WaitForChild("Handle") -- Qurolning tutqich qismi
+local RemoteEvent = Instance.new("RemoteEvent") -- O'q otish uchun RemoteEvent
+RemoteEvent.Name = "FireBullet"
+RemoteEvent.Parent = Tool
+
+local UserInputService = game:GetService("UserInputService")
+
+local isFiring = false -- O'q otish holati
+
+Tool.Equipped:Connect(function(mouse)
+    mouse.Button1Down:Connect(function()
+        if not isFiring then
+            isFiring = true
+            RemoteEvent:FireServer(mouse.Hit.p) -- Serverga ma'lumot yuborish
+            task.wait(0.2) -- Otish oralig'i (sekundlarda)
+            isFiring = false
+        end
+    end)
+end)

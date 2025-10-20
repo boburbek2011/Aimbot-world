@@ -1,0 +1,30 @@
+-- Server skripti (BulletScript)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerStorage = game:GetService("ServerStorage")
+
+local Bullet = Instance.new("Part") -- O'q modeli
+Bullet.Shape = Enum.PartType.Ball
+Bullet.Size = Vector3.new(0.2, 0.2, 0.2)
+Bullet.Anchored = false
+Bullet.CanCollide = true
+Bullet.Massless = true
+Bullet.Material = Enum.Material.Neon
+Bullet.Color = Color3.new(1, 1, 0) -- Sariq o'q
+
+local function FireBullet(player, hitPosition)
+    local character = player.Character
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    local head = character:WaitForChild("Head")
+
+    local bulletClone = Bullet:Clone()
+    bulletClone.Parent = workspace
+    bulletClone.CFrame = CFrame.new(head.Position, hitPosition)
+
+    local direction = (hitPosition - head.Position).Unit * 100 -- O'qning yo'nalishi va tezligi
+    bulletClone.Velocity = direction
+
+    game:GetService("Debris"):AddItem(bulletClone, 5) -- O'qni 5 sekunddan keyin o'chirish
+end
+
+game.ReplicatedStorage.FireBullet.OnServerEvent:Connect(FireBullet)
